@@ -3,7 +3,7 @@ class LatestIssuesSetup < ActiveRecord::Base
 
   attr_accessible :max_count, :side  
 
-  DEFAULT_SIDE  = 'left'
-  DEFAULT_COUNT = 5
+  DEFAULT_SIDE  = 'right'
+  DEFAULT_COUNT = 20
 
 end
