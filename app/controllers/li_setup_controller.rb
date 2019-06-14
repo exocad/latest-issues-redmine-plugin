@@ -3,7 +3,7 @@ class LiSetupController < ApplicationController
 
 
   def index
-	setup = LatestIssuesSetup.find_by_id(1)
+	setup = LatestIssuesSetup.where(:id => 1).first
        
        if setup == nil
          setup = LatestIssuesSetup.create(:max_count => LatestIssuesSetup::DEFAULT_COUNT, :side => LatestIssuesSetup::DEFAULT_SIDE)
@@ -12,7 +12,7 @@ class LiSetupController < ApplicationController
   end
 
   def change
-	setup = LatestIssuesSetup.find_by_id(1)
+	setup = LatestIssuesSetup.where(:id => 1).first
       setup.max_count = params[:count]
       setup.side  = params[:side]
       if setup.save
