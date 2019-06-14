@@ -21,11 +21,11 @@ class LatestIssuesViewHookListener < Redmine::Hook::ViewListener
 	    #setup = LatestIssuesSetup.find_by_id(1)
             setup = nil
 	    if setup == nil
-                count = LatestIssuesSetup::DEFAULT_COUNT
-                side  = LatestIssuesSetup::DEFAULT_SIDE
+							count = 20
+							side  = "right"
             else
-                count = setup.max_count
-                side  = setup.side
+              count = setup.max_count
+              side  = setup.side
             end
 
             {:count => count, :side => side}
@@ -33,7 +33,7 @@ class LatestIssuesViewHookListener < Redmine::Hook::ViewListener
 
         def load_issues(count)
             html = '<div class="box" id="statuses">'
-            html += '<h3 class="icon22 icon22-users">Latest Issues</h3><ul>'
+            html += '<h3 class="icon22 icon22-users">Latest 20 Issues</h3><ul>'
             issues  = Issue.visible(User.current).find(:all, :limit => count, :order => "issues.created_on DESC")
             issues.each do |issue|
                 html += <<EOHTML
